@@ -1,0 +1,56 @@
+Maven:
+------
+JAVA_HOME
+MAVEN_HOME - till bin directory
+close all the command prompts opened and open a new command prompt to verify the changes
+https://www.eclipse.org/m2e/
+In eclipse -> Help -> Install New Software -> http://download.eclipse.org/technology/m2e/releases/
+pom: Project Object Model
+groupId: com.advitha
+artifactId: spring5proj
+groupId + artifactId + version = unique combination(coordinates of the project)
+Maven Life cycle:
+-----------------
+Generate a Project -> Execute Maven -> Install a Maven artifact -> Run the app
+1. Validate: Validate the project is correct
+2. Compile: Compile the source code of the project
+3. Test: Test the compile source code using a unit testing framework
+4. Package: Package the compiled code
+5. Integration-test: Deploy the package into an environment where integration tests can be run
+6. Verify: Run any checks to verify the package is valid
+7. Install: Install the package into local repository
+8. Deploy: Copies the final package to the remote repository
+Maven Repository:
+-----------------
+1. Central
+2. Local (~/.m2)
+Dependency Management:
+----------------------
+https://search.maven.org/
+Project Object Model:
+---------------------
+When adding dependencies, you can add the scope tag to indicate which life cycle phase uses this component.
+scopes: compile(default), provided, runtime, test, and system.
+Provided: is used when JDK is expected to provide them
+Runtime: is required for executing and testing, not compiling
+Project Relationships:
+----------------------
+All project relationships are established using Maven coordinates.
+example: Log4j and jUnit
+Best Practices: (Multi-Module vs Inheritance)
+---------------
+There are projects that have components that are totally unrelated to each other. 
+But together, they are required to make a larger project.
+This is an example when you should use a multi-module approach.
+A reason to use inheritance occurs when projects have shared dependencies.
+Maven Plugins:
+--------------
+A plugin is a collection of one or more goals
+A goal is a "unit of work" in Maven.
+http://maven.apache.org/plugins/index
+to execute a single goal: mvn pluginname:goal
+Core Plugins/Packaging types/Reporting Plugins/tools etc
+
+mvn archetype:generate -DgroupId=com.advitha -DartifactId=sample -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+mvn help:effective-pom
+mvn archetype:generate -DgroupId=com.advitha -DartifactId=samplewebapp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false

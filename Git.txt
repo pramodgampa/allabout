@@ -1,0 +1,144 @@
+git help branch
+git init
+git status
+git add / git diff
+git commit -m
+git log --oneline
+git checkout
+git checkout -b <new_branch_name>
+git checkout <branch_name>
+
+
+git ls-tree HEAD
+cat .git/HEAD
+
+Git:
+----
+Distributed Version Control
+Configuration:
+--------------
+System: all users
+User:.gitconfig
+Project:.git/config
+
+git config --list
+git config user.email
+git config --global core.editor "atom --wait"
+git config --global color.ui true
+git help
+
+Initialize a git repository:
+git init
+Create a file and add some text to it. Save it.
+git add . (dot at the end)
+git commit -m "First Commmit"
+git log
+git log -2
+git log --oneline
+git log --grep="ever"
+git log --since=2019-12-01
+git log --until=2019-12-01
+git log 8617df98b8d..HEAD
+git log explorers.html
+git log -p
+git log --stat
+git log --format=short
+git log --format=oneline
+git log --graph
+git log --graph --all --oneline --decorate
+
+git diff
+git diff --staged (view only staged changes)
+git rm <filename>
+rename:
+-------
+1. Rename the file in workspace
+2. git status : 1 deleted file, 1 untracked file
+3. git add <new_file_name>
+4. git rm <old_file_name>
+5. git status : shows renamed
+another way: 
+1. git mv second_file.txt secondary_file.txt 
+2. git status : shows renamed
+
+To skip adding the changeset to staging and direct commit, use "-a" option with commit:
+git commit -am "commiting without adding the changeset to staging"
+Note: But, untracked files can't be committed with this command.
+
+git diff
+1. if it has more results to show, press "space", it goes to next page. We can also use b(backword) or f(forward) alternatively.
+2. also, use 'q' to quit from diff
+3. use -S to change wordwrap
+4. Better way is: git diff --color-words
+
+view a commit: git show <first_part_commit_id>
+example commitid: 8551d9225129004415c4bf1a1ebf95253c3faef6
+git show 8551d9
+git show HEAD
+
+
+compare commits:
+git diff <old_commit_id>..<new_commit_id>
+
+create a file with name .gitignore
+all templates can be found here: https://github.com/github/gitignore
+
+if .gitignore doesn't work: (https://appuals.com/fix-gitignore-is-not-working/)
+1. git rm -r --cached .
+2. git add .
+3. git commit -m ".gitignore is now working"
+(or)
+git rm --cached db_config.txt
+
+globally ignore files: git config --global core.excludesfile ~/.gitignore_global
+
+to track empty directories: create a .gitkeep file in the empty directory.
+
+3 tree architecture:
+--------------------
+working directory -> staging index(add command) -> repository
+git generates a checksum for each of the changesets
+git uses SHA-1 algorithm to create checksums(40 characters hexadecimal string(0-9,a-f))
+
+----------------------------------------------------------------------------------------------------------------
+Tree-ish:
+---------
+git ls-tree HEAD (for files it shows BLOB and for directories it shows TREE)
+git ls-tree HEAD assest/ ( here assets is a directory and we wish to see its contents)
+
+Ancestry:
+---------
+git show <commit_id>~<1/2/3...> means parent/grand parent/great grand parent...
+git show  eb08f64e~2
+same can be achieved using: 
+git show  eb08f64e^^ (this notation works only in git bash)
+
+----------------------------------------------------------------------------------------------------
+Branching:
+----------
+1. To create a new branch: git branch new_branch
+cat .git/HEAD
+ls -la .git/refs/heads/
+cat .git/refs/heads/master
+2. Switch to newly created branch: git checkout new_branch
+git branch -> should point to new_branch, instead of master
+cat .git/HEAD
+3. Create and switch branches in single step: git checkout -b <new_branch_name>
+4. Compare branches: 
+git diff --color-words new_branch..shorten_title
+git branch --merged
+git branch --no-merged
+5. Renaming a branch:
+git branch -m seo_title (Assume we wish to change the current branch name i.e., new_branch)
+git branch (observe, new_branch is no more, instead we have seo_title branch)
+6. Delete a branch:
+git branch -d branch_to_delete (use -D when it complains)
+--------------------------------------------------------------------------------------------------------
+Reset Branches: In all the cases, moves the head pointer
+1. soft: revert the changes to staging directory, so that you can commit
+2. mixed: revert the changes to working directory, so that you can add them and commit
+3. hard: permanently undo commits, useful to reset a branch to another banch
+git reset --soft HEAD^
+git reset --hard some_branch
+git reset --hard some_changeset_id
+

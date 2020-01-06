@@ -1,0 +1,42 @@
+https://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries
+
+Singleton: https://codepumpkin.com/singleton-design-pattern/
+Java: Runtime
+Spring: scope="singleton"
+
+Factory Method: https://dzone.com/articles/java-the-factory-pattern
+Java: Calendar.getInstance()
+Spring:(factory-method, factory-bean) 
+
+PubSub:https://medium.com/easyread/create-your-own-java-pubsub-library-fbee21d0bb44
+Immutable Objects: https://dzone.com/articles/immutable-objects-in-java
+1. Don't add any setter method
+2. Declare all fields final and private
+3. If a field is a mutable object create defensive copies of it for getter methods
+4. If a mutable object passed to the constructor must be assigned to a field create a defensive copy of it
+5. Don't allow subclasses to override methods.
+
+The unit of parallelism is not the thread anymore; it’s the task
+
+Binary Tree: Binary Search Tree: https://www.baeldung.com/java-binary-tree
+Spring Boot with Restful API, JPA, and Hiberanate: https://www.callicoder.com/spring-boot-rest-api-tutorial-with-mysql-jpa-hibernate/
+Spring Boot: application.properties: https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html
+
+Hiberanate:
+-----------
+@IdClass
+@Embeddable
+@DynamicInsert and & @DynamicUpdate
+The @Entity annotation is defined by the JPA 2.0 specification to annotate an entity bean. 
+An entity represents a lightweight persistent domain object or a Plain Old Java Object (POJO).
+The entities can be accessed through the JPA "javax.persistence.EntityManager" or the Hibernate "org.hibernate.Session" object 
+An entity class must have a public or protected no-arg constructor, and it can have other constructors as well. It should be a top-level class and must not be final.
+Every entity must have a primary key that must be declared only once in the entity hierarchy.
+If the @column annotation is not specified, the names of the instance variables are considered column names. Every nonstatic and nontransient property of an entity bean is considered persistent unless you specify @Transient. @Transient properties are ignored by the EntityManager when you map persistent properties.
+In this case, the department and idCard attributes are declared as IDs in the Employee class. An external class called EmployeeId is created with the same ID property names and types as in the Employee class and is annotated as @IdClass in the Employee object.
+For Hibernate caching to work correctly, you need to override the equals() and hashCode() methods of the custom ID class. The equals() method is used to compare two objects for equality, and the hashCode() method provides an object’s hashcode. You use EqualsBuilder and HashCodeBuilder to simplify the equals() and hashCode() implementations. These classes are provided by the Apache Commons Lang library
+Composite ID as a Property Using a Component Type: Using this method, the IDs are declared in an external class that is annotated as embeddable in the entity.
+Hibernate provides a saveOrUpdate() method for persisting objects, which determines whether an object should be saved or updated. It is also very useful for transitive object persistence, so when you use saveOrUpdate(), Hibernate checks to see whether the object is transient (it has no identifier property); if so, Hibernate makes it persistent by generating the identifier and assigning it to a session. If the object already has an identifier, it performs update():
+On application startup, Hibernate creates SQL statements for each of its persistent classes. That means Hibernate creates SQL statements for the Create, Read, Update, and Delete (CRUD) operations, but doesn’t execute these statements. So, on application startup, an insert statement (create), a delete, a read, and an update are created. The update statement is created to update every field. At runtime, if the value isn’t changed, it is updated with the old value. The CRUD statements are cached in memory by Hibernate.
+
+https://www.baeldung.com/hibernate-5-spring -> HIbernate 5 configuration

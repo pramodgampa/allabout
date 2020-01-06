@@ -1,0 +1,15 @@
+HashBucket -> Use Array
+Each Element of the HashBucket array is -> a Linked List
+Each Element of the Linked List is -> an Entry<key,value>
+
+HashMap API
+-----------
+put(key,value)
+get(key)
+containsKey(key)
+remove(key)
+containsValue(value)
+
+HashKey???
+HashBucket index???
+
